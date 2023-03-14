@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>invoice</title>
+<link rel="stylesheet" href="style.css" media="all" />
+</head>
+
+<body 
+	style="position: relative; width: 18cm; height: 20.7cm; margin: 0 auto; color: #001028; background: #FFFFFF; font-size: 11px !important; font-family: 'Times New Roman', Times, serif; overflow: scroll;">
+
+	<div style="width: 17cm; height: 20cm; margin-top: 2%">
+		<header class="clearfix" style="clear: both; margin-bottom: 30px;">
+			<div id="logo" style="text-align: center; margin-bottom: 10px;">
+				<img
+					src=""
+					style="width: 25%; margin: 0%;" />
+			</div>
+			<h1
+				style="border-top: 1px solid #5D6975; border-bottom: 1px solid #5D6975; color: #5D6975; font-size: 1.5em; line-height: 1.4em; font-weight: normal; text-align: center; margin: 0% 0% 1% 0%; background: url(dimension.png);">TAX
+				INVOICE</h1>
+			<div style="margin: 2%;">
+				<span id="company"
+					style="white-space: nowrap; text-align: left; float: left; font-size: 0.9em; color: #000000;">
+					<div style="font-weight: bold;">Invoice
+						Number:[[${invoiceNumber}]]</div>
+					<div>[[${customerName}]]</div>
+					<div>[[${customerAddress}]]</div>
+					<div>Customer Id : [[${customerId}]]</div>
+					<div>Date :[[${invoiceDate}]]</div>
+				</span> <span id="project"
+					style="color: #000000; text-align: right; font-size: 0.9em; white-space: nowrap; display: contents; margin-left: 660px; margin-top: 0%;">
+
+					<div>Sajirkrupa Traders,</div>
+					<div>Near Nava mondha ,</div>
+					<div>TQ.Purna,Dist. Parbhani</div>
+					<div>sajgirtraders@gmail.com</div>
+					<div>www.sajgirtraders.com</div>
+					<div>
+						GSTIN/UIN:<b>[[${gstinNumber}]]</b>
+					</div>
+				</span>
+			</div>
+			<div style="border: 2px solid #5c92c1; margin-top: 25px;"></div>
+
+		</header>
+
+		<table
+			style="width: 100%; border-collapse: collapse; border-spacing: 0; margin-bottom: 20px; background-color: antiquewhite; margin-top: 20px;">
+			<thead>
+				<tr>
+					<th
+						style="padding: 5px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal;"
+						class=""><b>Product</b></th>
+					<th
+						style="padding: 3px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal;"><b>HSN
+							code</b></th>
+					<th
+						style="padding: 3px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal;"><b>Price</b></th>
+					<th
+						style="padding: 3px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal;"><b>Qty</b></th>
+					<th
+						style="padding: 3px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal;"><b>Gst</b></th>
+
+					<th
+						style="padding: 3px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; font-weight: normal;"><b>Total</b></th>
+					<th
+						style="padding: 3px 20px; color: #5D6975; border-bottom: 1px solid #C1CED9; white-space: nowrap; text-align: center; font-weight: normal;"><b>Price</b>
+						<p>incl of gst</p></th>
+				</tr>
+			</thead>
+			<tbody style="background-color: #e0d4f1; font-size: 11px;">
+				<tr th:each="product : ${productList}">
+					<td
+						style="font-size: 1.4em; vertical-align: top; padding: 8px; padding-left: 23px;"
+						th:text="${product.productName}"></td>
+					<td
+						style="font-size: 1.4em; vertical-align: top; padding: 8px; padding-left: 25px;"
+						th:text="${product.hsnCode}"></td>
+					<td style="font-size: 1.4em; vertical-align: top; padding: 8px;"
+						th:text="${product.productRate}"></td>
+					<td
+						style="font-size: 1.4em; vertical-align: top; padding: 8px; padding-right: 24px; text-align: center;"
+						th:text="${product.quantity}"></td>
+					<td style="font-size: 1.4em; vertical-align: top; padding: 8px;"
+						th:text="${product.productGstPer}"></td>
+					<td style="padding: 8px; font-size: 1.4em; vertical-align: top;"
+						th:text="${product.totalPriceWithOutGst}"></td>
+					<td
+						style="padding: 8px; text-align: center; font-size: 1.4em; vertical-align: top;"
+						th:text="${product.productTaxAmount}"></td>
+
+				</tr>
+
+			</tbody>
+		</table>
+		<div>
+			<div
+				style="text-align: right; margin-right: 30px; font-size: 13px; line-height: normal;">
+				<p style="line-height: 0.3;">Total Amount : [[${totalAmount}]]</p>
+				<p style="line-height: 0.3;">C GST : [[${cGst}]]</p>
+				<p style="line-height: 0.3;">S GST : [[${sGst}]]</p>
+				<p style="line-height: 0.3;">GST Tax : [[${gstTax}]]</p>
+				<p style="line-height: 0.3;">Discount: [[${discount}]]</p>
+				<p style="line-height: 0.3;">GRAND TOTAL : [[${grandTotal}]]</p>
+			</div>
+			<hr />
+			<div style="display: inline-grid; grid-template-columns: auto auto auto; padding: 10px; width: 100%">
+				<div style="font-size: 13px; text-align: left; line-height: 0.8;">
+					<p>Terms and conditions</p>
+					<p>1) Goods once sold will not be taken back.</p>
+					<p>2) 24% pa interest will charged if the bill/bills is/are not
+						paid on due date.</p>
+					<p>3) Payment within 21 days</p>
+					<p>4) All transactions are subject to Parbhani Jurisdiction.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
